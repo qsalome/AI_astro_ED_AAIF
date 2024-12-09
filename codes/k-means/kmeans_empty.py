@@ -7,8 +7,8 @@
 import numpy as np
 
 
-# This Function return a distance in ndim dimension
-# between two points (arguments are table with all the dimensions) 
+# This Function returns a distance in ndim dimension
+# between two points (arguments are tables with all the dimensions) 
 def dist_f(dat, cent):
 	
 	dist = np.sum((dat[:] - cent[:])**2)
