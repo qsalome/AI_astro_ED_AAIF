@@ -12,7 +12,6 @@
 import numpy as np
 import sys, os
 sys.path.insert(0,'..')
-from ext_module import *
 
 
 nb_epochs = 2000
