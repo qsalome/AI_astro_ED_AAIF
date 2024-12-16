@@ -85,22 +85,22 @@ def create_train_aug(i, rf_c, rf_id, rf_scale):
 		
 		transform = A.Compose([
 			#Affine here act more as an aspect ratio transform than scaling
-			#A.Affine(scale=(0.85,1.15), rotate=(-10,10), fit_output=True, interpolation=1, p=1.0),
+			A.Affine(scale=(0.85,1.15), rotate=(-10,10), fit_output=True, interpolation=1, p=1.0),
 
 			#No scale augment
-			A.LongestMaxSize(max_size=image_size_val, interpolation=1, p=1.0),
-			A.PadIfNeeded(min_width=image_size, min_height=image_size, border_mode=cv2.BORDER_CONSTANT, value=0, p=1.0),
+			#A.LongestMaxSize(max_size=image_size_val, interpolation=1, p=1.0),
+			#A.PadIfNeeded(min_width=image_size, min_height=image_size, border_mode=cv2.BORDER_CONSTANT, value=0, p=1.0),
 
 			#Un-comment for scale augment 
-			#A.SmallestMaxSize(max_size=l_scale, interpolation=1, p=1.0),
-			#A.Affine(translate_px=(-l_translate,l_translate),p=1.0),
-			#A.PadIfNeeded(min_width=image_size, min_height=image_size, border_mode=cv2.BORDER_CONSTANT, value=0, p=1.0),
-			#A.RandomCrop(width=image_size, height=image_size, p=1.0),
+			A.SmallestMaxSize(max_size=l_scale, interpolation=1, p=1.0),
+			A.Affine(translate_px=(-l_translate,l_translate),p=1.0),
+			A.PadIfNeeded(min_width=image_size, min_height=image_size, border_mode=cv2.BORDER_CONSTANT, value=0, p=1.0),
+			A.RandomCrop(width=image_size, height=image_size, p=1.0),
 
-			#A.HorizontalFlip(p=0.5),
+			A.HorizontalFlip(p=0.5),
 			
-			#A.ColorJitter(brightness=(0.75,1.3), contrast=(0.75,1.3), saturation=(0.75,1.3), hue=0.15, p=1.0),
-			#A.ToGray(p=0.02),
+			A.ColorJitter(brightness=(0.75,1.3), contrast=(0.75,1.3), saturation=(0.75,1.3), hue=0.15, p=1.0),
+			A.ToGray(p=0.02),
 			
 			#A.OneOf([
 	        #	A.ISONoise(p=0.1),
